@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as ex_movieItem from './ex_movieItem';
+import Ex_movieApp from './ex_movieItem';
 
 
 
-ReactDOM.render(<ex_movieItem.App />, document.getElementById("root"));
+ReactDOM.render(<Ex_movieApp />, document.getElementById("root"));

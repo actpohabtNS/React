@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const movie = {
+const movie = {
     title: "Avengers: Infinity War",
     rate: 8.5,
     image: "https://image.tmdb.org/t/p/w500/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
@@ -9,7 +9,7 @@ export const movie = {
       release_date: "2018-04-25"
   };
   
-  export class MovieItem extends React.Component {
+class MovieItem extends React.Component {
     constructor() {
       super();
   
@@ -56,7 +56,7 @@ export const movie = {
     }
   }
   
-  export function App() {
+  export default function App() {
     return (
       <div>
         <MovieItem data={movie}/>
