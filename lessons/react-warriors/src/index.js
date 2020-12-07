@@ -11,14 +11,30 @@ const movie = {
 };
 
 class MovieItem extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      show: false
+    };
+  }
+
   render() {
-    const {data: {title, rate, image}} = this.props;
+    const {data: {title, rate, image, overview}} = this.props;
 
     return (
       <div>
         <img src={image} alt={title}></img>
         <p>{title}</p>
         <p>{rate}</p>
+        <button
+        onClick={ () => {
+            this.setState({show: true});
+          }
+        }
+        >
+          show</button>
+        {this.state.show ? <p>{overview}</p> : null}
       </div>
     )
   }
