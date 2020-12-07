@@ -15,26 +15,43 @@ class MovieItem extends React.Component {
     super();
 
     this.state = {
-      show: false
+      showed: false,
+      liked: false
     };
+  }
+
+  toggleOverview = () => {
+    this.setState({
+      showed: !this.state.showed
+    })
+  }
+
+  toggleLiked = () => {
+    this.setState({
+      liked: !this.state.liked
+    })
   }
 
   render() {
     const {data: {title, rate, image, overview}} = this.props;
 
     return (
-      <div>
-        <img src={image} alt={title}></img>
+      <div style={{width: "400px"}}>
+        <img src={image} alt={title} style={{width: "100%"}}></img>
         <p>{title}</p>
         <p>{rate}</p>
-        <button
-        onClick={ () => {
-            this.setState({show: true});
-          }
-        }
-        >
-          show</button>
-        {this.state.show ? <p>{overview}</p> : null}
+        <div style={{display: "flex", justifyContent: "space-between"}}>
+          <button
+          onClick={this.toggleOverview}>
+            {this.state.showed ? "hide" : "show"}
+          </button>
+          <button
+          onClick={this.toggleLiked}
+          style={{background: this.state.liked ? "azure" : "white"}}>
+            {this.state.liked ? "unlike" : "like"}
+          </button>
+        </div>
+        {this.state.showed ? <p>{overview}</p> : null}
       </div>
     )
   }
