@@ -23,9 +23,8 @@ class App extends React.Component {
   }
 
   addMovieToWatch = movie => {
-    const new_moviesToWatch = [...this.state.moviesToWatch];
+    const new_moviesToWatch = [...this.state.moviesToWatch, movie];
 
-    new_moviesToWatch.push(movie);
     this.setState({
       moviesToWatch: new_moviesToWatch
     })
@@ -50,7 +49,7 @@ class App extends React.Component {
               })}
             </div>
           </div>
-          <div clasName="col-3">
+          <div className="col-3">
             <p>Will watch: {this.state.moviesToWatch.length}</p>
           </div>
         </div>
