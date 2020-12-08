@@ -30,6 +30,16 @@ class App extends React.Component {
     })
   }
 
+  removeMovieToWatch = movie => {
+    const new_moviesToWatch = this.state.moviesToWatch.filter(item => {
+      return item.id !== movie.id;
+    })
+
+    this.setState({
+      moviesToWatch: new_moviesToWatch
+    });
+  }
+
   render() {
     return (
       <div className="container">
@@ -43,6 +53,7 @@ class App extends React.Component {
                       movie={movie}
                       removeMovie={this.removeMovie}
                       addMovieToWatch={this.addMovieToWatch}
+                      removeMovieToWatch={this.removeMovieToWatch}
                     /> 
                   </div>
                 );
