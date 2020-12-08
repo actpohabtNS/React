@@ -43,12 +43,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <div className="row">
+        <div className="row mt-4">
           <div className="col-9">
             <div className="row">
               {this.state.movies.map(movie => {
                 return (
-                  <div className="col-6 mb-4" key={movie.id}>
+                  <div className="col-4 mb-4" key={movie.id}>
                     <MovieItem
                       movie={movie}
                       removeMovie={this.removeMovie}
@@ -61,7 +61,21 @@ class App extends React.Component {
             </div>
           </div>
           <div className="col-3">
-            <p>Will watch: {this.state.moviesToWatch.length}</p>
+            <div style={{position: "fixed"}}>
+              <h4>Will Watch: {this.state.moviesToWatch.length} movies</h4>
+              <ul className="list-group">
+              {this.state.moviesToWatch.map(movie => {
+                return (
+                  <li className="list-group-item" key={movie.id}>
+                    <div className="d-flex justify-content-between">
+                      <div>{movie.title}</div>
+                      <div>{movie.vote_average}</div>
+                    </div>
+                  </li>
+                );
+              })}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
