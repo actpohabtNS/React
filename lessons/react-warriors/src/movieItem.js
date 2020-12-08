@@ -10,9 +10,9 @@ class MovieItem extends React.Component {
     }
 
     render() {
-        const {movie, removeMovie, addMovieToWatch, removeMovieToWatch} = this.props;
+        const {movie, addMovieToWatch, removeMovieToWatch} = this.props;
         return (
-            <div className="card">
+            <div className="card" style={{width: "100%"}}>
                 <img
                     className="card-img-top"
                     src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path ||
@@ -34,7 +34,7 @@ class MovieItem extends React.Component {
                                     removeMovieToWatch(movie);
                                 }
                                 }>
-                                Remove Will Watch
+                                Won't watch
                             </button>
                             ) : (
                             <button
@@ -47,13 +47,10 @@ class MovieItem extends React.Component {
                                         addMovieToWatch(movie);
                                     }
                                 }>
-                                Add Will Watch
+                                Will Watch
                             </button>
                         )}
                     </div>
-                <button type="button" onClick={removeMovie.bind(null, movie)}>
-                    Delete movie
-                </button>
                 </div>
             </div>
         );

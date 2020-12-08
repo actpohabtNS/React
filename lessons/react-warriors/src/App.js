@@ -12,16 +12,6 @@ class App extends React.Component {
     }
   }
 
-  removeMovie = movie => {
-    const updatedMovies = this.state.movies.filter(item => {
-      return item.id !== movie.id;
-    })
-
-    this.setState({
-      movies: updatedMovies
-    });
-  }
-
   addMovieToWatch = movie => {
     const new_moviesToWatch = [...this.state.moviesToWatch, movie];
 
@@ -51,7 +41,6 @@ class App extends React.Component {
                   <div className="col-4 mb-4" key={movie.id}>
                     <MovieItem
                       movie={movie}
-                      removeMovie={this.removeMovie}
                       addMovieToWatch={this.addMovieToWatch}
                       removeMovieToWatch={this.removeMovieToWatch}
                     /> 
