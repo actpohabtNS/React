@@ -1,15 +1,26 @@
 import React from "react";
 import moviesData from "./moviesData";
 import MovieItem from "./movieItem";
+import {API_URL, API_KEY_3} from "./api";
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      movies: moviesData,
+      movies: [],
       moviesToWatch: []
     }
+  }
+
+  componentDidMount() {
+    fetch(`${API_URL}/discover/movie?api_key=${API_KEY_3}`).then(
+      response => response.json()
+      ).then(data => {
+        this.setState({
+          movies: data.results
+        })
+      })
   }
 
   addMovieToWatch = movie => {
