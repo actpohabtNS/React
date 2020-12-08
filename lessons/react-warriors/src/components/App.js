@@ -1,7 +1,7 @@
 import React from "react";
-import moviesData from "./moviesData";
+import MovieTabs from "./MoviesTabs"
 import MovieItem from "./movieItem";
-import {API_URL, API_KEY_3} from "./api";
+import {API_URL, API_KEY_3} from "../api";
 
 class App extends React.Component {
   constructor() {
@@ -9,18 +9,28 @@ class App extends React.Component {
 
     this.state = {
       movies: [],
-      moviesToWatch: []
+      moviesToWatch: [],
+      sortBy: "popularity.desc"
     }
-  }
+  };
 
   componentDidMount() {
-    fetch(`${API_URL}/discover/movie?api_key=${API_KEY_3}`).then(
+    this.loadMovies();
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.sortBy !== this.state.sortBy)
+      this.loadMovies();
+  }
+
+  loadMovies = () => {
+    fetch(`${API_URL}/discover/movie?api_key=${API_KEY_3}&sort_by=${this.state.sortBy}`).then(
       response => response.json()
       ).then(data => {
         this.setState({
           movies: data.results
         })
-      })
+      });
   }
 
   addMovieToWatch = movie => {
@@ -29,7 +39,7 @@ class App extends React.Component {
     this.setState({
       moviesToWatch: new_moviesToWatch
     })
-  }
+  };
 
   removeMovieToWatch = movie => {
     const new_moviesToWatch = this.state.moviesToWatch.filter(item => {
@@ -39,13 +49,27 @@ class App extends React.Component {
     this.setState({
       moviesToWatch: new_moviesToWatch
     });
-  }
+  };
+
+  updateSortBy = sortBy => {
+    this.setState({
+      sortBy: sortBy
+    });
+  };
 
   render() {
     return (
       <div className="container">
         <div className="row mt-4">
           <div className="col-9">
+            <div className="row mb-4">
+              <div className="col-12">
+                <MovieTabs 
+                  sortBy={this.state.sortBy}
+                  updateSortBy={this.updateSortBy}
+                />
+              </div>
+            </div>
             <div className="row">
               {this.state.movies.map(movie => {
                 return (

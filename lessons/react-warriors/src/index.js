@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 //import App from './ex_movieItem';
-import App from "./App";
+import App from "./components/App";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
