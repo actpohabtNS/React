@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import moviesData from "./moviesData";
+import MovieItem from "./movieItem";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      movies: moviesData,
+      moviesToWatch: []
+    }
+  }
+
+  removeMovie = movie => {
+    const updatedMovies = this.state.movies.filter(item => {
+      return item.id !== movie.id;
+    })
+
+    this.setState({
+      movies: updatedMovies
+    });
+  }
+
+  addMovieToWatch = movie => {
+    const new_moviesToWatch = [...this.state.moviesToWatch];
+
+    new_moviesToWatch.push(movie);
+    this.setState({
+      moviesToWatch: new_moviesToWatch
+    })
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-9">
+            <div className="row">
+              {this.state.movies.map(movie => {
+                return (
+                  <div className="col-6 mb-4" key={movie.id}>
+                    <MovieItem
+                      movie={movie}
+                      removeMovie={this.removeMovie}
+                      addMovieToWatch={this.addMovieToWatch}
+                    /> 
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div clasName="col-3">
+            <p>Will watch: {this.state.moviesToWatch.length}</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default App;

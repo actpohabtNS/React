@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Ex_movieApp from './ex_movieItem';
+//import App from './ex_movieItem';
+import App from "./App";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 
-
-ReactDOM.render(<Ex_movieApp />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
