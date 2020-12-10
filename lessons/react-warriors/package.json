@@ -14,11 +14,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build -e react-warriors",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build -e react-warriors"
   },
   "eslintConfig": {
     "extends": [
@@ -41,5 +41,5 @@
   "devDependencies": {
     "gh-pages": "^3.1.0"
   },
-  "homepage": "http://actpohabtNS/react-warriors"
+  "homepage": "."
 }
