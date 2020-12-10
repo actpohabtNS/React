@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "./static/js/main.ce64c6d4.chunk.js",
-    "main.js.map": "./static/js/main.ce64c6d4.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.1fb328a6.js",
-    "runtime-main.js.map": "./static/js/runtime-main.1fb328a6.js.map",
-    "static/css/2.20aa2d7b.chunk.css": "./static/css/2.20aa2d7b.chunk.css",
-    "static/js/2.020df3e7.chunk.js": "./static/js/2.020df3e7.chunk.js",
-    "static/js/2.020df3e7.chunk.js.map": "./static/js/2.020df3e7.chunk.js.map",
-    "index.html": "./index.html",
-    "static/css/2.20aa2d7b.chunk.css.map": "./static/css/2.20aa2d7b.chunk.css.map",
-    "static/js/2.020df3e7.chunk.js.LICENSE.txt": "./static/js/2.020df3e7.chunk.js.LICENSE.txt"
+    "main.js": "/react-warriors/static/js/main.ce64c6d4.chunk.js",
+    "main.js.map": "/react-warriors/static/js/main.ce64c6d4.chunk.js.map",
+    "runtime-main.js": "/react-warriors/static/js/runtime-main.bf418c68.js",
+    "runtime-main.js.map": "/react-warriors/static/js/runtime-main.bf418c68.js.map",
+    "static/css/2.20aa2d7b.chunk.css": "/react-warriors/static/css/2.20aa2d7b.chunk.css",
+    "static/js/2.e1529f5f.chunk.js": "/react-warriors/static/js/2.e1529f5f.chunk.js",
+    "static/js/2.e1529f5f.chunk.js.map": "/react-warriors/static/js/2.e1529f5f.chunk.js.map",
+    "index.html": "/react-warriors/index.html",
+    "static/css/2.20aa2d7b.chunk.css.map": "/react-warriors/static/css/2.20aa2d7b.chunk.css.map",
+    "static/js/2.e1529f5f.chunk.js.LICENSE.txt": "/react-warriors/static/js/2.e1529f5f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.1fb328a6.js",
+    "static/js/runtime-main.bf418c68.js",
     "static/css/2.20aa2d7b.chunk.css",
-    "static/js/2.020df3e7.chunk.js",
+    "static/js/2.e1529f5f.chunk.js",
     "static/js/main.ce64c6d4.chunk.js"
   ]
 }
