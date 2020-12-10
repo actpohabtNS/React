@@ -1,6 +1,7 @@
 import React from "react";
 import MovieTabs from "./MoviesTabs"
 import MovieItem from "./movieItem";
+import Pages from "./Pages"
 import {API_URL, API_KEY_3} from "../api";
 
 class App extends React.Component {
@@ -10,7 +11,9 @@ class App extends React.Component {
     this.state = {
       movies: [],
       moviesToWatch: [],
-      sortBy: "popularity.desc"
+      sortBy: "popularity.desc",
+      page: 1,
+      total_pages: 0
     }
   };
 
@@ -19,16 +22,19 @@ class App extends React.Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.sortBy !== this.state.sortBy)
+    if (prevState.sortBy !== this.state.sortBy ||
+      prevState.page !== this.state.page)
       this.loadMovies();
   }
 
   loadMovies = () => {
-    fetch(`${API_URL}/discover/movie?api_key=${API_KEY_3}&sort_by=${this.state.sortBy}`).then(
+    fetch(`${API_URL}/discover/movie?api_key=${API_KEY_3}` +
+          `&sort_by=${this.state.sortBy}&page=${this.state.page}`).then(
       response => response.json()
       ).then(data => {
         this.setState({
-          movies: data.results
+          movies: data.results,
+          total_pages: data.total_pages
         })
       });
   }
@@ -57,6 +63,12 @@ class App extends React.Component {
     });
   };
 
+  updatePage = newPage => {
+    this.setState({
+      page: newPage
+    })
+  }
+
   render() {
     return (
       <div className="container">
@@ -82,6 +94,13 @@ class App extends React.Component {
                   </div>
                 );
               })}
+            </div>
+            <div className="row">
+              <Pages
+                page={this.state.page}
+                total_pages={this.state.total_pages}
+                updatePage={this.updatePage}
+              />
             </div>
           </div>
           <div className="col-3">

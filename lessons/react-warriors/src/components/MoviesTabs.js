@@ -52,7 +52,7 @@ class MovieTabs extends React.Component {
                 </li>
             </ul>
         )
-    }
+    };
 }
 
 export default MovieTabs;
