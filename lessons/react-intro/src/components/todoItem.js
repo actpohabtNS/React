@@ -23,6 +23,7 @@ class TodoItem extends React.Component {
 
                 <label
                     htmlFor={item.id}
+                    className={item.completed ? "completed" : ""}
                 >
                     {item.text}
                 </label>

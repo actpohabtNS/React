@@ -49,3 +49,9 @@ input[type=checkbox] {
 input[type=checkbox]:focus {
   outline: 0;
 }
+
+.completed {
+  text-decoration: line-through;
+  font-style: italic;
+  opacity: 0.8;
+}
