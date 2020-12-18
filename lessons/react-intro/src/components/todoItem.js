@@ -1,8 +1,8 @@
 import React from 'react'
 
-function TodoItem() {
+function TodoItem(props) {
 
-    const {item, toggleDone} = this.props
+    const {item, toggleDone} = props
 
     return (
         <div className="todo-item">
@@ -15,7 +15,7 @@ function TodoItem() {
 
             <label
                 htmlFor={item.id}
-                className={item.completed ? "completed" : ""}
+                className={item.completed && "completed"}
             >
             {item.text}
             </label>
