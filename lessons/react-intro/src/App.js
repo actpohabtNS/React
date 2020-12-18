@@ -11,8 +11,32 @@ class App extends React.Component {
     }
   }
   
+  toggleDone = id => {
+    this.setState(prevState => {
+      const newTodos = prevState.todos.map(item => {
+        if (item.id === id)
+        return {
+          ...item,
+          completed: !item.completed
+        }
+
+        return item
+      })
+
+      return {
+        todos: newTodos
+      }
+    })
+  }
+
   render() {    
-    const todoList = this.state.todos.map(item => <TodoItem key={item.id} item={item}/>)
+    const todoList = this.state.todos.map(item => {
+      return <TodoItem
+                key={item.id}
+                item={item}
+                toggleDone={this.toggleDone}
+              />
+    })
 
     return (
       <div className="todo-list">

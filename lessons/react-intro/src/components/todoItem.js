@@ -10,18 +10,21 @@ class TodoItem extends React.Component {
     }
 
     render() {
+        const {item, toggleDone} = this.props
+
         return (
             <div className="todo-item">
                 <input
                     type="checkbox"
-                    checked={this.props.item.completed}
-                    id={this.props.item.id}
+                    checked={item.completed}
+                    id={item.id}
+                    onClick={() => toggleDone(item.id)}
                 />
 
                 <label
-                    htmlFor={this.props.item.id}
+                    htmlFor={item.id}
                 >
-                    {this.props.item.text}
+                    {item.text}
                 </label>
             </div>
         )
