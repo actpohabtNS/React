@@ -1,17 +1,23 @@
 import React from 'react';
-import './App.css';
-import Navbar from './components/Navbar';
-import MainContent from './components/MainContent';
-import Footer from './components/Footer';
+import todosData from './todosData'
+import TodoItem from './components/todoItem'
 
-function App() {
-  return (
-    <div>
-      <Navbar />
-      <MainContent />
-      <Footer />
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super()
+
+    this.state = {
+      todos: todosData
+    }
+  }
+  
+  render() {    
+      return (
+        <div className="todo-list">
+          <TodoItem />
+        </div>
+      );
+  }
 }
 
-export default App;
+export default App
