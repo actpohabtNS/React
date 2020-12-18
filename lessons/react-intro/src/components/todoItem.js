@@ -11,7 +11,19 @@ class TodoItem extends React.Component {
 
     render() {
         return (
-            <div className="todo-item">todoitem</div>
+            <div className="todo-item">
+                <input
+                    type="checkbox"
+                    checked={this.props.item.completed}
+                    id={this.props.item.id}
+                />
+
+                <label
+                    htmlFor={this.props.item.id}
+                >
+                    {this.props.item.text}
+                </label>
+            </div>
         )
     }
 }
