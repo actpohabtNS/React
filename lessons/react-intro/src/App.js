@@ -12,13 +12,7 @@ class App extends React.Component {
   }
   
   render() {    
-    const todoList = this.state.todos.map(item => {
-      return (
-        <div key={item.id}>
-          <TodoItem item={item}/>
-        </div>
-      )
-    })
+    const todoList = this.state.todos.map(item => <TodoItem key={item.id} item={item}/>)
 
     return (
       <div className="todo-list">
