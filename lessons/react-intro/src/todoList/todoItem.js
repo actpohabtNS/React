@@ -10,12 +10,12 @@ function TodoItem(props) {
                 type="checkbox"
                 checked={item.completed}
                 id={item.id}
-                onClick={() => toggleDone(item.id)}
+                onChange={() => toggleDone(item.id)}
             />
 
             <label
                 htmlFor={item.id}
-                className={item.completed && "completed"}
+                className={item.completed ? "completed" : ""}
             >
             {item.text}
             </label>

@@ -34,7 +34,7 @@ header > p {
 }
 
 .meme > img {
-    height: calc(99vh - 100px - 40px - 40px);
+    height: calc(99vh - 5vh - 100px - 40px - 40px);
     display: block;
     margin: 0 auto;
 }
