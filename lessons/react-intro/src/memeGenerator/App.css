@@ -30,12 +30,13 @@ header > p {
 
 .meme {
     position: relative;
-    width: 90%;
-    margin: auto;
+    width: 100%;
 }
 
 .meme > img {
-    width: 100%;
+    height: calc(99vh - 100px - 40px - 40px);
+    display: block;
+    margin: 0 auto;
 }
 
 .meme > h2 {
