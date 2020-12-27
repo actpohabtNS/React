@@ -15,7 +15,7 @@ function ColorChanger(props) {
                 onPress={() => onIncrease()}
             >
                 <Text style={styles.ButtonText}>
-                    {`Increase ${color}`}
+                    + Increase +
                 </Text>
             </TouchableOpacity>
 
@@ -24,7 +24,7 @@ function ColorChanger(props) {
                 onPress={() => onDecrease()}
             >
                 <Text style={styles.ButtonText}>
-                    {`Decrease ${color}`}
+                    - Decrease -
                 </Text>
             </TouchableOpacity>
         </View>
