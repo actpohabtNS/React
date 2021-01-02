@@ -1,4 +1,5 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
+import { createAppContainer } from 'react-navigation'
 import SearchScreen from './src/screens/SearchScreen'
 
 const navigator = createStackNavigator({
@@ -9,3 +10,5 @@ const navigator = createStackNavigator({
     title: 'Business Search'
   }
 })
+
+export default createAppContainer(navigator)
