@@ -33,6 +33,11 @@ const HomeScreen = ({ navigation }) => {
         title={"Counter"}
         onPress={() => navigation.navigate("Counter")}
       />
+
+      <Button
+        title={"Password checker"}
+        onPress={() => navigation.navigate("Password")}
+      />
     </View>
   )
 };
