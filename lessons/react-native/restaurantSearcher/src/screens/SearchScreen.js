@@ -21,7 +21,6 @@ const SearchScreen = () => {
                 onTermSubmit={() => searchApi(term)}
             />
             {errorMessage ? <Text>{errorMessage}</Text> : null}
-            <Text>There are {results.length} restaurants for you!</Text>
             <ResultsList title={"Cost Effective"} results={filterResultsByPrice("$")}/>
             <ResultsList title={"Middle Pricers"} results={filterResultsByPrice("$$")}/>
             <ResultsList title={"Big Spenders"} results={filterResultsByPrice("$$$")}/>
