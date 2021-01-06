@@ -14,7 +14,7 @@ const SigninScreen = ({ navigation }) => {
         <View style={styles.container}>
             <AuthForm
                 headerText="Sign In to Your Account"
-                errorMessage=""
+                errorMessage={state.errorMessage}
                 submitButtonText="Sign In"
                 onSubmit={signin}
             />
