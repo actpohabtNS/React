@@ -1,3 +1,5 @@
+import '../_mockLocation'
+
 import React, { useState, useEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Text } from 'react-native-elements'
@@ -15,19 +17,25 @@ const TrackCreateScreen = () => {
                 throw new Error('Location permission not granted');
             }
         } catch (err) {
-            setErr(e);
+            setErr(err);
         }
     }
 
+    useEffect(() => {
+        startWatching();
+    }, [])
+
     return (
         <SafeAreaView forceInset={{ top: "always" }}>
-            <View>
-                <Text h3>
-                    Create a Track
-                </Text>
+            <Text h3>
+                Create a Track
+            </Text>
 
-                <Map />
-            </View>
+            <Map />
+
+            { err
+              ? <Text>Please enable location services</Text>
+              : null}
         </SafeAreaView>
     )
 }
