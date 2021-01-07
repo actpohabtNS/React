@@ -12,10 +12,6 @@ const TrackListScreen = ({ navigation }) => {
         <SafeAreaView forceInset={{ top: 'always' }}>
             <NavigationEvents onWillFocus={fetchTracks} />
 
-            <Text h3>
-                TrackList Screen
-            </Text>
-
             <FlatList
                 data={state}
                 keyExtractor={item => item._id}
@@ -34,6 +30,10 @@ const TrackListScreen = ({ navigation }) => {
             />
         </SafeAreaView>
     )
+}
+
+TrackListScreen.navigationOptions = {
+    title: 'Tracks'
 }
 
 export default TrackListScreen;
