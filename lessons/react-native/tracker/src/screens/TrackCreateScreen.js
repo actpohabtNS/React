@@ -1,13 +1,34 @@
-import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, StyleSheet } from 'react-native'
+import { Text } from 'react-native-elements'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { requestPermissionsAsync } from 'expo-location'
+import Map from '../components/Map'
 
 const TrackCreateScreen = () => {
+    const [err, setErr] = useState(null);
+
+    const startWatching = async () => {
+        try {
+            const { granted } = await requestPermissionsAsync();
+            if (!granted) {
+                throw new Error('Location permission not granted');
+            }
+        } catch (err) {
+            setErr(e);
+        }
+    }
+
     return (
-        <View>
-            <Text style={{ fontSize: 48 }}>
-                TrackCreate Screen
-            </Text>
-        </View>
+        <SafeAreaView forceInset={{ top: "always" }}>
+            <View>
+                <Text h3>
+                    Create a Track
+                </Text>
+
+                <Map />
+            </View>
+        </SafeAreaView>
     )
 }
 
