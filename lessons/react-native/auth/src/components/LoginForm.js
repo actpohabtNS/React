@@ -1,24 +1,38 @@
 import firebase from 'firebase';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Card, CardSection, Field, Button } from './common';
+import { Card, CardSection, Field, Button, Spinner } from './common';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   
   const logIn = (email, password) => {
     setError('');
+    setLoading(true);
 
     firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(onLoginSuccess)
       .catch(() => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
-          .catch(() => {
-            setError('Authentication Failed.');
-          })
+          .then(onLoginSuccess)
+          .catch(onLoginFail)
       })
   } 
+
+  const onLoginFail = () => {
+    setError('Authentication Failed.');
+    setLoading(false);
+  }
+
+  const onLoginSuccess = () => {
+    setEmail('');
+    setPassword('');
+    setError('');
+    setLoading(false);
+  }
 
   return (
     <Card>
@@ -41,9 +55,13 @@ const LoginForm = () => {
       </CardSection>
 
       <CardSection>
-        <Button onPress={() => logIn(email, password)} >
-          Log in
-        </Button>
+        {
+          loading
+          ? <Spinner />
+          : <Button onPress={() => logIn(email, password)} >
+              Log in
+            </Button>
+        }
       </CardSection>
 
       {
