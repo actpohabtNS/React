@@ -1,39 +1,14 @@
-import firebase from 'firebase';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import useAuth from '../hooks/useAuth';
 import { Card, CardSection, Field, Button, Spinner } from './common';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
   
-  const logIn = (email, password) => {
-    setError('');
-    setLoading(true);
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(onLoginSuccess)
-      .catch(() => {
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-          .then(onLoginSuccess)
-          .catch(onLoginFail)
-      })
-  } 
-
-  const onLoginFail = () => {
-    setError('Authentication Failed.');
-    setLoading(false);
-  }
-
-  const onLoginSuccess = () => {
-    setEmail('');
-    setPassword('');
-    setError('');
-    setLoading(false);
-  }
-
+  const [error, loading, logIn] = useAuth(setEmail, setPassword);
+  
   return (
     <Card>
       <CardSection>
