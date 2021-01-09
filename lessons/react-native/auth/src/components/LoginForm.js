@@ -1,28 +1,74 @@
-import { database } from 'firebase';
+import firebase from 'firebase';
 import React, { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import { Card, CardSection, Field, Button } from './common';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   
+  const logIn = (email, password) => {
+    setError('');
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch(() => {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+          .catch(() => {
+            setError('Authentication Failed.');
+          })
+      })
+  } 
+
   return (
     <Card>
       <CardSection>
-        <Field label="email" placeholder="user@gmail.com" />
+        <Field
+          onChangeText={setEmail}
+          value={email} label="email"
+          placeholder="user@gmail.com"
+        />
       </CardSection>
 
       <CardSection>
-        <Field label="password" placeholder="password" secureTextEntry />
+        <Field
+          onChangeText={setPassword}
+          value={password}
+          label="password"
+          placeholder="password"
+          secureTextEntry
+        />
       </CardSection>
 
       <CardSection>
-        <Button>
+        <Button onPress={() => logIn(email, password)} >
           Log in
         </Button>
       </CardSection>
+
+      {
+        error
+        ? <CardSection>
+            <View style={styles.errorContainer}>
+              <Text style={styles.error}>{error}</Text>
+            </View>
+          </CardSection>
+        : null
+      }
+      
     </Card>
   )
 }
+
+const styles = StyleSheet.create({
+  errorContainer: {
+    flex: 1,
+  },
+  error: {
+    fontSize: 18,
+    color: 'red',
+    alignSelf: 'center',
+  },
+})
 
 export default LoginForm;
