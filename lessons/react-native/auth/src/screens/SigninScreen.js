@@ -1,14 +1,14 @@
 import React from 'react';
-import { View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { Header } from '../components/common';
 import LoginForm from '../components/LoginForm'
 
 const SigninScreen = () => {
 return (
-    <View>
+    <SafeAreaView>
       <Header text="Authentication" />
       <LoginForm />
-    </View>
+    </SafeAreaView>
   );
 }
 

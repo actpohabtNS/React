@@ -1,21 +1,27 @@
-import React, { useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
-import firebase from 'firebase';
-import { Header } from './src/components/common';
-import LoginForm from './src/components/LoginForm'
+import React from 'react'
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { SafeAreaProvider } from 'react-native-safe-area-context'; 
 
-export default function App() {
-  useEffect(() => {
-    
-  }, []);
+import LoadingScreen from './src/screens/LoadingScreen'
+import SigninScreen from './src/screens/SigninScreen'
+import SignoutScreen from './src/screens/SignoutScreen'
 
+import { setNavigator } from './src/navigationRef'
+
+const navigator = createSwitchNavigator({
+  Loading: LoadingScreen,
+  Signin: SigninScreen,
+  Signout: SignoutScreen
+}, {
+  initialRouteName: 'Loading',
+})
+
+const App = createAppContainer(navigator);
+
+export default () => {
   return (
-    <View>
-      <Header text="Authentication" />
-      <LoginForm />
-    </View>
-  );
+    <SafeAreaProvider>
+      <App ref={(navigator) => setNavigator(navigator)} />
+    </SafeAreaProvider>
+  )
 }
-
-const styles = StyleSheet.create({
-});

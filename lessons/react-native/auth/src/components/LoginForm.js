@@ -7,7 +7,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
-  const [error, loading, logIn] = useAuth(setEmail, setPassword);
+  const {error, loading, logIn} = useAuth(setEmail, setPassword);
   
   return (
     <Card>

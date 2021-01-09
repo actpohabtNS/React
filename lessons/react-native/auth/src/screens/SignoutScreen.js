@@ -1,15 +1,22 @@
 import React from 'react'
-import { View } from 'react-native'
-import { Header, Button } from '../components/common'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { Card, CardSection, Header, Button } from '../components/common'
+import useAuth from '../hooks/useAuth'
 
 const SignoutScreen = () => {
+  const {logOut} = useAuth();
+
   return (
-    <View>
+    <SafeAreaView>
       <Header text="Authentication" />
-      <Button>
-        Log out
-      </Button>
-    </View>
+      <Card>
+        <CardSection>
+          <Button onPress={logOut} >
+            Log out
+          </Button>
+        </CardSection>
+      </Card>
+    </SafeAreaView>
   )
 }
 
