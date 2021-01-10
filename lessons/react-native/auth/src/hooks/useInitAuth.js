@@ -17,11 +17,7 @@ export default () => {
     firebase.app();
   }
 
-  console.log("In init auth");
-
   firebase.auth().onAuthStateChanged((user) => {
-    console.log("in auth change");
-
     if (user) {
       navigate('Signout')
     } else {
