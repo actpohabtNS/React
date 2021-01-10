@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import * as actions from '../actions'
 import { CardSection } from './common'
 
-const ListItem = ({ library, selectLibrary }) => {
-  const { id, title } = library;
+const ListItem = ({ library, selectLibrary, expanded }) => {
+  const { id, title, description } = library;
 
   return (
     <TouchableWithoutFeedback onPress={() => selectLibrary(id)}>
@@ -13,6 +13,12 @@ const ListItem = ({ library, selectLibrary }) => {
         <CardSection>
           <Text style={styles.title}>{title}</Text>
         </CardSection>
+
+        { expanded
+         ? <CardSection>
+            <Text style={styles.title}>{description}</Text>
+          </CardSection>
+         : null }
       </View>
     </TouchableWithoutFeedback>
   )
@@ -25,4 +31,10 @@ const styles = StyleSheet.create({
   },
 })
 
-export default connect(null, actions)(ListItem);
+const mapStateToProps = (state, ownProps) => {
+  const expanded = state.selectedLibraryId === ownProps.library.id;
+
+  return { expanded };
+}
+
+export default connect(mapStateToProps, actions)(ListItem);
