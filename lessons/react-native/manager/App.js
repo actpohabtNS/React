@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { View } from 'react-native';
 import firebase from 'firebase'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import ReduxThunk from 'redux-thunk'
 import reducers from './src/reducers'
-import LoginForm from './src/components/LoginForm'
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Router from './src/Router'
 
 export default function App() {
   useEffect(() => {
@@ -27,9 +27,9 @@ export default function App() {
 
   return (
     <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
-      <View>
-        <LoginForm />
-      </View>
+      <SafeAreaProvider>
+        <Router />
+      </SafeAreaProvider>
     </Provider>
   );
 }
