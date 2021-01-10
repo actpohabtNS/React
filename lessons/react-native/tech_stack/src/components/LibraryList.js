@@ -1,14 +1,16 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, FlatList, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import ListItem from './ListItem'
 
-const LibraryList = (props) => {
-  console.log(props);
+const LibraryList = ({ libraries }) => {
 
   return (
-    <View>
-      <Text>I'm a list</Text>
-    </View>
+    <FlatList
+      data={libraries}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={({item}) => <ListItem library={item} />}
+    />
   )
 }
 
