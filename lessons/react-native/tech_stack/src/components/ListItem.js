@@ -1,12 +1,20 @@
 import React from 'react'
-import { Text, StyleSheet } from 'react-native'
+import { View, Text, TouchableWithoutFeedback, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
 import { CardSection } from './common'
 
-const ListItem = ({ library }) => {
+const ListItem = ({ library, selectLibrary }) => {
+  const { id, title } = library;
+
   return (
-    <CardSection>
-      <Text style={styles.title}>{library.title}</Text>
-    </CardSection>
+    <TouchableWithoutFeedback onPress={() => selectLibrary(id)}>
+      <View>
+        <CardSection>
+          <Text style={styles.title}>{title}</Text>
+        </CardSection>
+      </View>
+    </TouchableWithoutFeedback>
   )
 }
 
@@ -17,4 +25,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default ListItem;
+export default connect(null, actions)(ListItem);
