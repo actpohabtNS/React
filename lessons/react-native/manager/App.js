@@ -1,14 +1,33 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { View } from 'react-native';
+import firebase from 'firebase'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducers from './src/reducers'
+import LoginForm from './src/components/LoginForm'
 
 export default function App() {
+  useEffect(() => {
+    const firebaseConfig = {
+      apiKey: "AIzaSyA5SCH5RMIliYP84IHAZXUj2clm8_TRDE0",
+      authDomain: "manager-5f59a.firebaseapp.com",
+      projectId: "manager-5f59a",
+      storageBucket: "manager-5f59a.appspot.com",
+      messagingSenderId: "545823719149",
+      appId: "1:545823719149:web:b83c14d96348989396d6e4"
+    };
+
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    } else {
+      firebase.app();
+    }
+  }, [])
+
   return (
     <Provider store={createStore(reducers)}>
       <View>
-        <Text>Ta da</Text>
+        <LoginForm />
       </View>
     </Provider>
   );

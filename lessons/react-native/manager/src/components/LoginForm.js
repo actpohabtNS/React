@@ -28,3 +28,5 @@ const LoginForm = () => {
     </Card>
   )
 }
+
+export default LoginForm;
