@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { Card, CardSection, Field, Button } from './common'
+import { Card, CardSection, Field, Button, Spinner } from './common'
 import { emailChanged, passwordChanged, loginUser } from '../actions'
 
-const LoginForm = ({ email, emailChanged, password, passwordChanged, loginUser, error }) => { 
+const LoginForm = ({ email, emailChanged, password, passwordChanged, loginUser, error, loading }) => { 
   return (
     <Card>
       <CardSection>
@@ -27,9 +27,12 @@ const LoginForm = ({ email, emailChanged, password, passwordChanged, loginUser, 
       </CardSection>
 
       <CardSection>
-        <Button onPress={() => loginUser({ email, password })}>
-          Log in
-        </Button>
+        { loading
+        ? <Spinner />
+        : <Button onPress={() => loginUser({ email, password })}>
+            Log in
+          </Button> }
+        
       </CardSection>
       
     { error
