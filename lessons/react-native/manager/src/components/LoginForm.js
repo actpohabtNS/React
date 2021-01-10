@@ -1,9 +1,10 @@
 import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { Card, CardSection, Field, Button } from './common'
-import { emailChanged, passwordChanged } from '../actions'
+import { emailChanged, passwordChanged, loginUser } from '../actions'
 
-const LoginForm = ({ email, emailChanged, password, passwordChanged }) => { 
+const LoginForm = ({ email, emailChanged, password, passwordChanged, loginUser, error }) => { 
   return (
     <Card>
       <CardSection>
@@ -26,14 +27,30 @@ const LoginForm = ({ email, emailChanged, password, passwordChanged }) => {
       </CardSection>
 
       <CardSection>
-        <Button>
+        <Button onPress={() => loginUser({ email, password })}>
           Log in
         </Button>
       </CardSection>
       
+    { error
+    ? <CardSection>
+        <View style={{ flex: 1}}>
+          <Text style={styles.errorText}>{error}</Text>
+        </View>
+      </CardSection>
+      : null }
+
     </Card>
   )
 }
+
+const styles = StyleSheet.create({
+  errorText: {
+    fontSize: 18,
+    color: 'red',
+    alignSelf: 'center'
+  },
+})
 
 const mapStateToProps = state => {
   return {
@@ -41,4 +58,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged })(LoginForm);
+export default connect(
+  mapStateToProps,
+  { emailChanged, passwordChanged, loginUser }
+  )(LoginForm);

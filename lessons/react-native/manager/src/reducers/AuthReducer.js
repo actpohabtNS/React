@@ -1,6 +1,7 @@
 const INIT_STATE = {
   email: '',
   password: '',
+  user: null,
 }
 
 export default (state = INIT_STATE, action) => {
@@ -11,6 +12,12 @@ export default (state = INIT_STATE, action) => {
     case 'password_changed':
       return { ...state, password: action.payload };
     
+    case 'login_user_success':
+      return { ...state, user: action.payload, error: '', email: '', password: '' }
+
+    case 'login_user_fail':
+      return { ...state, error: action.payload, password: ''}
+
     default:
       return state;
   }

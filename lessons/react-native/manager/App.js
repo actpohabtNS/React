@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import firebase from 'firebase'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import ReduxThunk from 'redux-thunk'
 import reducers from './src/reducers'
 import LoginForm from './src/components/LoginForm'
 
@@ -25,7 +26,7 @@ export default function App() {
   }, [])
 
   return (
-    <Provider store={createStore(reducers)}>
+    <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
       <View>
         <LoginForm />
       </View>
