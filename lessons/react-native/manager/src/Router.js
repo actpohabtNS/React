@@ -11,7 +11,7 @@ const RouterComponent = () => {
         <Scene key="authFlow">
           <Scene key="login" component={LoginScreen} title="Please Login" />
         </Scene>
-        <Scene key="mainFlow">
+        <Scene key="mainFlow" initial>
           <Scene
             rightTitle="Add"
             onRight={() => Actions.employeeCreate()}
