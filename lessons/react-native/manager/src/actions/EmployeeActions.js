@@ -12,13 +12,22 @@ export const employeeCreate = ({ name, phone, shift }) => {
   const { currentUser } = firebase.auth();
   
   return (dispatch) => {
-    console.log(currentUser.uid);
-
     firebase.database().ref(`/users/${currentUser.uid}/employees`)
       .push({ name, phone, shift })
       .then(() => {
         dispatch({ type: 'employee_create' });
         Actions.pop()
       });
+  }
+}
+
+export const employeesFetch = () => {
+  const { currentUser } = firebase.auth();
+  
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees`)
+      .on('value', snapshot => {
+        dispatch({ type: 'employees_fetch_success', payload: snapshot.val() })
+      })
   }
 }

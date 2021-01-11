@@ -1,12 +1,32 @@
-import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import React, { useEffect } from 'react'
+import { View, Text, FlatList, StyleSheet } from 'react-native'
+import _ from 'lodash'
+import { connect } from 'react-redux'
+import { employeesFetch } from '../actions'
+import ListItem from '../components/ListItem'
 
-const EmployeeScreen = () => {
+const EmployeeScreen = ({ employees, employeesFetch }) => {
+  useEffect(() => {
+    if (!employees.length) {
+      employeesFetch();
+    }
+  }, [])
+
   return (
-    <View>
-      <Text>Emloyee</Text>
-    </View>
+    <FlatList
+      data={employees}
+      keyExtractor={(item) => item.uid}
+      renderItem={({ item }) => <ListItem employee={item} /> }
+    />
   )
 }
 
-export default EmployeeScreen;
+const mapStateToProps = state => {
+  const employees = _.map(state.employees, (val, uid) => {
+    return { ...val, uid }
+  })
+
+  return { employees }; 
+}
+
+export default connect(mapStateToProps, { employeesFetch })(EmployeeScreen);
