@@ -1,7 +1,7 @@
 const INIT_STATE = {
   name: '',
   phone: '',
-  shift: '',
+  shift: 'Monday',
 }
 
 export default (state = INIT_STATE, action) => {
@@ -9,6 +9,9 @@ export default (state = INIT_STATE, action) => {
     case 'employee_update':
       return { ...state, [action.payload.prop]: action.payload.value }
     
+    case 'employee_create':
+      return INIT_STATE;
+
     default:
       return state;
   }

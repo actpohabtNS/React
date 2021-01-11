@@ -3,9 +3,9 @@ import { Text, StyleSheet } from 'react-native'
 import { Card, CardSection, Field, Button } from '../components/common'
 import { Picker } from '@react-native-picker/picker'
 import { connect } from 'react-redux'
-import { employeeUpdate } from '../actions'
+import { employeeUpdate, employeeCreate } from '../actions'
 
-const EmployeeCreateScreen = ({ name, phone, shift, employeeUpdate }) => {
+const EmployeeCreateScreen = ({ name, phone, shift, employeeUpdate, employeeCreate }) => {
   return (
     <Card>
       <CardSection>
@@ -47,7 +47,7 @@ const EmployeeCreateScreen = ({ name, phone, shift, employeeUpdate }) => {
 
       
       <CardSection>
-        <Button>
+        <Button onPress={() => employeeCreate({ name, phone, shift })}>
           Save
         </Button>
       </CardSection>
@@ -70,4 +70,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { employeeUpdate })(EmployeeCreateScreen);
+export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(EmployeeCreateScreen);
