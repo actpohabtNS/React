@@ -4,9 +4,9 @@ import { Card, CardSection, Button } from '../components/common'
 import { connect } from 'react-redux'
 
 import EmployeeForm from '../components/EmployeeForm'
-import { employeeUpdate } from '../actions'
+import { employeeUpdate, employeeSave } from '../actions'
 
-const EmployeeEdit = ({ employee, name, phone, shift, employeeUpdate }) => {
+const EmployeeEdit = ({ employee, name, phone, shift, employeeUpdate, employeeSave }) => {
   useEffect(() => {
     _.each(employee, (value, prop) => {
       employeeUpdate({ prop, value })
@@ -19,7 +19,7 @@ const EmployeeEdit = ({ employee, name, phone, shift, employeeUpdate }) => {
       <EmployeeForm />
       
       <CardSection>
-        <Button onPress={() => console.log(name, phone, shift)}>
+        <Button onPress={() => employeeSave({ name, phone, shift, uid: employee.uid })}>
           Save Changes
         </Button>
       </CardSection>
@@ -38,4 +38,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { employeeUpdate })(EmployeeEdit);
+export default connect(mapStateToProps, { employeeUpdate, employeeSave })(EmployeeEdit);

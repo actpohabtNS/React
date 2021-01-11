@@ -10,6 +10,7 @@ export default (state = INIT_STATE, action) => {
       return { ...state, [action.payload.prop]: action.payload.value }
     
     case 'employee_create':
+    case 'employee_save_success':
       return INIT_STATE;
 
     default:
