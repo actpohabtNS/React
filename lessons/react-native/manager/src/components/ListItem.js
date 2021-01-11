@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux'
 
 const ListItem = ({ employee }) => {
   return (
-    <TouchableOpacity onPress={() => Actions.employeeCreate({ employee })}>
+    <TouchableOpacity onPress={() => Actions.employeeEdit({ employee })}>
       <CardSection>
         <View style={styles.container}>
           <Text style={styles.text}>
