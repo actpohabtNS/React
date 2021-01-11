@@ -1,16 +1,19 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { CardSection } from './common'
+import { Actions } from 'react-native-router-flux'
 
 const ListItem = ({ employee }) => {
   return (
-    <CardSection>
-      <View style={styles.container}>
-        <Text style={styles.text}>
-          {employee.name}
-        </Text>
-      </View>
-    </CardSection>
+    <TouchableOpacity onPress={() => Actions.employeeCreate({ employee })}>
+      <CardSection>
+        <View style={styles.container}>
+          <Text style={styles.text}>
+            {employee.name}
+          </Text>
+        </View>
+      </CardSection>
+    </TouchableOpacity>
   )
 }
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { View, Text, FlatList, StyleSheet } from 'react-native'
+import { FlatList } from 'react-native'
 import _ from 'lodash'
 import { connect } from 'react-redux'
 import { employeesFetch } from '../actions'
