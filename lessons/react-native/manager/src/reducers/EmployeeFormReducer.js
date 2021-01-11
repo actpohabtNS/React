@@ -11,6 +11,7 @@ export default (state = INIT_STATE, action) => {
     
     case 'employee_create':
     case 'employee_save_success':
+    case 'employee_delete_success':
       return INIT_STATE;
 
     default:

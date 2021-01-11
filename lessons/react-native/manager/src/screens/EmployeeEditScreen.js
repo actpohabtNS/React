@@ -1,18 +1,20 @@
 import _ from 'lodash'
-import React, { useEffect } from 'react'
-import { Card, CardSection, Button } from '../components/common'
+import React, { useState, useEffect } from 'react'
+import { Card, CardSection, Button, ConfirmModal } from '../components/common'
 import { connect } from 'react-redux'
 import Communications from 'react-native-communications'
 
 import EmployeeForm from '../components/EmployeeForm'
-import { employeeUpdate, employeeSave } from '../actions'
+import { employeeUpdate, employeeSave, employeeDelete } from '../actions'
 
-const EmployeeEdit = ({ employee, name, phone, shift, employeeUpdate, employeeSave }) => {
+const EmployeeEdit = ({ employee, name, phone, shift, employeeUpdate, employeeSave, employeeDelete }) => {
   useEffect(() => {
     _.each(employee, (value, prop) => {
       employeeUpdate({ prop, value })
     })
   }, [])
+
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <Card>
@@ -32,10 +34,18 @@ const EmployeeEdit = ({ employee, name, phone, shift, employeeUpdate, employeeSa
       </CardSection>
 
       <CardSection>
-        <Button>
+        <Button onPress={() => setShowModal(!showModal)}>
           Fire
         </Button>
       </CardSection>
+
+      <ConfirmModal
+        visible={showModal}
+        onAccept={() => employeeDelete({ uid: employee.uid })}
+        onDecline={() => setShowModal(false)}
+      >
+        Are you sure you want to FIRE them?
+      </ConfirmModal>
     </Card>
   )
 }
@@ -46,4 +56,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { employeeUpdate, employeeSave })(EmployeeEdit);
+export default connect(mapStateToProps, { employeeUpdate, employeeSave, employeeDelete })(EmployeeEdit);
